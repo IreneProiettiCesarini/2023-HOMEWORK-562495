@@ -10,12 +10,14 @@ public class Partita {
 	private Stanza stanzaCorrente;
 	private boolean finita;
 	private Giocatore player;
+	private IO io;
 
-	public Partita() {
+	public Partita(IO io) {
+		this.io = io;
 		this.finita = false;
 		this.labirintoCorrente = new Labirinto();
 		this.stanzaCorrente = this.labirintoCorrente.getStanzaDiEntrata();
-		this.player=new Giocatore("player-uno");
+		this.player = new Giocatore("player-uno");
 	}
 
 	/* METODI GETTER */
@@ -31,13 +33,17 @@ public class Partita {
 	public Labirinto getLabirintoCorrente() {
 		return this.labirintoCorrente;
 	}
-	
+
 	public boolean getStatoPartita() {
 		return this.finita;
 	}
-	
+
 	public Giocatore getPlayer() {
 		return this.player;
+	}
+
+	public IO getIO() {
+		return this.io;
 	}
 
 	/**
@@ -67,12 +73,16 @@ public class Partita {
 	public void setFinita() {
 		this.finita = true;
 	}
-	
+
 	public void setStanzaCorrente(Stanza stanza) {
 		this.stanzaCorrente = stanza;
 	}
 
 	public void setLabirintoCorrente(Labirinto labirinto) {
 		this.labirintoCorrente = labirinto;
+	}
+
+	public String toString() {
+		return "nome player: " + this.player.getNomePlayer() + " CFU: " + this.player.getCfu() + "";
 	}
 }

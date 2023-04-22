@@ -38,23 +38,15 @@ public class Labirinto {
 		biblioteca.impostaStanzaAdiacente("sud", atrio);
 
 		/* crea gli attrezzi */
-		Attrezzo lanterna = new Attrezzo("lanterna", 3);
 		Attrezzo osso = new Attrezzo("osso", 1);
 		Attrezzo stecchino = new Attrezzo("stecchino", 1);
-		Attrezzo coltello = new Attrezzo("coltello", 2);
 		Attrezzo spada = new Attrezzo("spada", 5);
-		Attrezzo trombetta = new Attrezzo("trombetta", 1);
-		Attrezzo ascia = new Attrezzo("ascia", 7);
 		Attrezzo dolcetto = new Attrezzo("dolcetto", 1);
 
 		/* pone gli attrezzi nelle stanze */
-		aulaN10.addAttrezzo(lanterna);
 		aulaN10.addAttrezzo(dolcetto);
-		aulaN10.addAttrezzo(ascia);
 		atrio.addAttrezzo(osso);
-		atrio.addAttrezzo(coltello);
 		laboratorio.addAttrezzo(stecchino);
-		aulaN11.addAttrezzo(trombetta);
 		aulaN11.addAttrezzo(spada);
 
 		/* inizio del gioco */
