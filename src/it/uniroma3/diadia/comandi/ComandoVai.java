@@ -23,8 +23,8 @@ public class ComandoVai implements Comando {
 		}
 		Stanza prossimaStanza = corrente.getStanzaAdiacente(direzione);
 		if (prossimaStanza == null) {
-			io.mostraMessaggio("Direzione inesistente");
-			io.mostraMessaggio(corrente.printDirezioni());
+			io.mostraMessaggio("Direzione non disponibile!");
+			io.mostraMessaggio("Disponibili: " + corrente.printDirezioni());
 		} else {
 			partita.setStanzaCorrente(prossimaStanza);
 			int cfuPrec = partita.getPlayer().getCfu();

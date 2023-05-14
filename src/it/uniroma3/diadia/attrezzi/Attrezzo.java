@@ -5,7 +5,7 @@ package it.uniroma3.diadia.attrezzi;
  * può avere un nome ed un peso.
  */
 
-public class Attrezzo {
+public class Attrezzo implements Comparable<Attrezzo>{
 
 	private String nome;
 	private int peso;
@@ -47,12 +47,23 @@ public class Attrezzo {
 	public String toString() {
 		return this.getNome() + " (" + this.getPeso() + "kg)";
 	}
-	
+
+	@Override
+	public int hashCode() {
+		return this.getNome().hashCode();
+	}
+
 	@Override
 	public boolean equals(Object o) {
-		if(o==null) return false;
-		final Attrezzo that=(Attrezzo) o;
-		return this.getNome().equals(that.getNome()) && this.getPeso()==that.getPeso();
+		if (o == null)
+			return false;
+		final Attrezzo that = (Attrezzo) o;
+		return this.getNome().equals(that.getNome());
+	}
+
+	@Override
+	public int compareTo(Attrezzo that) {
+		return this.getNome().compareTo(that.getNome());
 	}
 
 }

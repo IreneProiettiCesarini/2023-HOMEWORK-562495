@@ -8,18 +8,12 @@ public class Giocatore {
 
 	static final private int CFU_INIZIALI = 20;
 
-	private String nomePlayer;
 	private Borsa borsa;
 	private int cfu;
 
-	public Giocatore(String nome) {
-		this.nomePlayer = nome;
+	public Giocatore() {
 		this.cfu = CFU_INIZIALI;
 		this.borsa = new Borsa();
-	}
-
-	public String getNomePlayer() {
-		return this.nomePlayer;
 	}
 
 	public Borsa getBorsa() {
@@ -32,10 +26,6 @@ public class Giocatore {
 	
 	public String toStringCfu() {
 		return ""+this.cfu+"";
-	}
-
-	public void setNomePlayer(String nomePlayer) {
-		this.nomePlayer = nomePlayer;
 	}
 
 	public void setBorsa(Borsa borsa) {

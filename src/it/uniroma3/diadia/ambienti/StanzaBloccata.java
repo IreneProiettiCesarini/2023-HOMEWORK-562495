@@ -30,22 +30,16 @@ public class StanzaBloccata extends Stanza {
 		StringBuilder risultato = new StringBuilder();
 		risultato.append(this.getNome());
 		risultato.append("\nUscite: ");
-		for (String direzione : this.getDirezioni()) {
-			if (direzione != null)
-				risultato.append(direzione + "; ");
+		for (String k : this.getStanzeAdiacenti().keySet()) {
+			risultato.append(k + "; ");
 		}
 		risultato.append("\nUscitaBloccata: ");
-		for (String direzione : this.getDirezioni()) {
-			if (direzione == this.direzioneBloccata)
-				risultato.append(direzione + "; ");
-		}
+		risultato.append(direzioneBloccata + "; ");
 		risultato.append("\nPer sloccare " + this.direzioneBloccata + " posa nella stanza: " + this.nomeAttrezzoChiave);
 		risultato.append("\nAttrezzi nella stanza: ");
-		for (Attrezzo attrezzo : this.getAttrezzi()) {
-			if (attrezzo != null)
-				risultato.append(attrezzo.toString() + " ");
+		for (Attrezzo j : this.getAttrezzi()) {
+			risultato.append(j.toString() + " ");
 		}
 		return risultato.toString();
 	}
-
 }

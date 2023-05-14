@@ -10,7 +10,6 @@ public class FabbricaDiComandiFisarmonica implements FabbricaDiComandi {
 	public Comando costruisciComando(String istruzione, IO io) {
 
 		if (istruzione==null) return new ComandoNonValido();
-		@SuppressWarnings("resource")
 		Scanner scannerDiParole = new Scanner(istruzione);
 		String nomeComando = null;
 		String parametro = null;
