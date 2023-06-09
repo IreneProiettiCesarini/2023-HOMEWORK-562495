@@ -1,0 +1,11 @@
+Stanze:Atrio,N11,N10,Laboratorio,Biblioteca,N9
+Inizio:Atrio
+Vincente:Biblioteca
+Magiche:N10
+Buie:Laboratorio candela
+Bloccate:Atrio nord chiaveGold
+Maghi:Merlino bacchetta 3 N9
+Cani:Rex osso N11
+Streghe:varana Atrio
+Attrezzi:osso 2 Atrio,spada 5 N11,dolcetto 1 N10,stecchino 1 Laboratorio,chiaveD'oro 10 N9
+Uscite:Atrio nord Biblioteca,Atrio sud N10,Atrio est N11,Atrio ovest Laboratorio,N11 est Laboratorio,N11 ovest Atrio,N10 nord Atrio,N10 est N11,N10 ovest Laboratorio,N10 sud N9,N9 nord N10,Laboratorio est Atrio,Laboratorio ovest N11,Biblioteca sud Atrio

@@ -10,7 +10,8 @@ public class StanzaMagica extends Stanza {
 	private int sogliaMagica;
 
 	public StanzaMagica(String nome) {
-		this(nome, SOGLIA_MAGICA_DEFAULT);
+		super(nome);
+		this.sogliaMagica = SOGLIA_MAGICA_DEFAULT;
 	}
 
 	/*
@@ -24,17 +25,17 @@ public class StanzaMagica extends Stanza {
 
 	@Override
 	public boolean addAttrezzo(Attrezzo attrezzo) {
-		if (this.contatoreAttrezziPosati < this.sogliaMagica) {
+		if (this.contatoreAttrezziPosati < this.sogliaMagica)
 			this.contatoreAttrezziPosati++;
-		} else {
+		else
 			attrezzo = modificaAttrezzo(attrezzo);
-		}
 		return super.addAttrezzo(attrezzo);
 	}
 
 	public Attrezzo modificaAttrezzo(Attrezzo attrezzo) {
 		String nomeInverso = new StringBuilder(attrezzo.getNome()).reverse().toString();
-		return new Attrezzo(nomeInverso, attrezzo.getPeso() * 2);
+		int pesoDoppio = attrezzo.getPeso() * 2;
+		return new Attrezzo(nomeInverso, pesoDoppio);
 	}
 
 }

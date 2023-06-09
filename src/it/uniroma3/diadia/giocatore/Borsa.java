@@ -10,7 +10,9 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import it.uniroma3.diadia.Configuratore;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
+import it.uniroma3.diadia.attrezzi.ComparatorePerPeso;
 
 /**
  * La classe Borsa è associata ad un player, contiene degli attrezzi il cui peso
@@ -18,7 +20,7 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
  */
 public class Borsa {
 
-	public final static int DEFAULT_PESO_MAX_BORSA = 10;
+	public final static int DEFAULT_PESO_MAX_BORSA = Configuratore.getPesoMax();
 	private Map<String, Attrezzo> attrezzi; // arrai di riferimenti ad Attrezzi
 	private int pesoMax; // peso massimo che possono raggiungere gli Attrezzi contenuti (sommati)
 

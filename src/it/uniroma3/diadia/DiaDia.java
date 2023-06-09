@@ -1,10 +1,11 @@
 package it.uniroma3.diadia;
 
+import java.util.Scanner;
+
 import it.uniroma3.diadia.ambienti.Labirinto;
-import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.comandi.Comando;
 import it.uniroma3.diadia.comandi.FabbricaDiComandi;
-import it.uniroma3.diadia.comandi.FabbricaDiComandiFisarmonica;
+import it.uniroma3.diadia.comandi.FabbricaDiComandiRiflessiva;
 
 public class DiaDia {
 
@@ -20,17 +21,12 @@ public class DiaDia {
 	private Partita partita;
 	private IO io;
 
-	public DiaDia(IO io) {
-		this.io = io;
-		this.partita = new Partita(io, new LabirintoBuilder());
-	}
-
 	public DiaDia(IO io, Labirinto labirinto) {
 		this.io = io;
 		this.partita = new Partita(io, labirinto);
 	}
 
-	public void gioca() {
+	public void gioca() throws Exception {
 		String istruzione;
 
 		this.io.mostraMessaggio(MESSAGGIO_BENVENUTO);
@@ -39,37 +35,34 @@ public class DiaDia {
 		while (!processaIstruzione(istruzione));
 	}
 
-	private boolean processaIstruzione(String istruzione) {
+	/**System.in
+	 * Processa un'istruzione 
+	 *
+	 * @return true se l'istruzione e' eseguita e il gioco continua, false altrimenti
+	 * @throws Exception 
+	 */
+	private boolean processaIstruzione(String istruzione) throws Exception {
 		Comando comandoDaEseguire;
-		FabbricaDiComandi factory = new FabbricaDiComandiFisarmonica();
-		comandoDaEseguire = factory.costruisciComando(istruzione, this.io);
+		FabbricaDiComandi factory = new FabbricaDiComandiRiflessiva();
+		try {
+			comandoDaEseguire = factory.costruisciComando(istruzione);
+		} catch (ClassNotFoundException cne) {
+			comandoDaEseguire = factory.costruisciComando("NonValido");
+		} catch (NullPointerException npe) {
+			comandoDaEseguire = factory.costruisciComando("NonValido");
+		}
 		comandoDaEseguire.esegui(this.partita);
-
-		if (this.partita.vinta()) {
+		if (this.partita.vinta())
 			io.mostraMessaggio("Hai vinto!");
-		}
-		if (this.partita.getPlayer().getCfu() == 0) {
-			io.mostraMessaggio("CFU terminati!");
-		}
-
+		if (this.partita.getPlayer().getCfu() == 0)
+			io.mostraMessaggio("CFU terminati...");
 		return this.partita.isFinita();
-
 	}
 
-	public static void main(String[] argc) {
-		IO io = new IOConsole();
-		Labirinto labInit = new LabirintoBuilder().addStanzaIniziale("Atrio").addAttrezzo("osso", 2)
-				.addStanza("AulaN11").addAttrezzo("spada", 5).addStanza("AulaN10").addAttrezzo("dolcetto", 1)
-				.addStanza("Laboratorio Campus").addAttrezzo("stecchino", 1).addStanza("Biblioteca")
-				.addStanzaVincente("Biblioteca").addAdiacenza("Atrio", "Biblioteca", "nord")
-				.addAdiacenza("Atrio", "AulaN10", "sud").addAdiacenza("Atrio", "AulaN11", "est")
-				.addAdiacenza("Atrio", "Laboratorio Campus", "ovest")
-				.addAdiacenza("AulaN11", "Laboratorio Campus", "est").addAdiacenza("AulaN11", "Atrio", "ovest")
-				.addAdiacenza("AulaN10", "Atrio", "nord").addAdiacenza("AulaN10", "AulaN11", "est")
-				.addAdiacenza("AulaN10", "Laboratorio Campus", "ovest")
-				.addAdiacenza("Laboratorio Campus", "Atrio", "est")
-				.addAdiacenza("Laboratorio Campus", "AulaN11", "ovest").addAdiacenza("Biblioteca", "Atrio", "Sud")
-				.getLabirinto();
+	public static void main(String[] argc) throws Exception {
+		Scanner scanner=new Scanner(System.in);
+		IO io = new IOConsole(scanner);
+		Labirinto labInit = Labirinto.newBuilder("src/labirintoInit.txt").getLabirinto();
 		DiaDia gioco = new DiaDia(io, labInit);
 		gioco.gioca();
 	}
